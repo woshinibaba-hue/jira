@@ -17,5 +17,31 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: ['react', '@typescript-eslint'],
-  rules: {}
+  rules: {
+    'react/jsx-filename-extension': [
+      'error',
+      {
+        extensions: ['.js', '.jsx', '.tsx', '.ts']
+      }
+    ],
+    // Missing file extension "ts" for "./reportWebVitals"eslintimport/extensions
+    // 缺少文件扩展名"ts"
+    // 解决上述报错
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        ts: 'never',
+        tsx: 'never'
+      }
+    ]
+  },
+  // Unable to resolve path to module './reportWebVitals'.eslintimport/no-unresolved
+  // 无法解析模块....
+  // 解决上述报错
+  settings: {
+    'import/resolver': {
+      typescript: {}
+    }
+  }
 }
