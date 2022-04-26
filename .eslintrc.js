@@ -1,7 +1,8 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
+    node: true
   },
   extends: [
     'plugin:react/recommended',
@@ -34,7 +35,11 @@ module.exports = {
         ts: 'never',
         tsx: 'never'
       }
-    ]
+    ],
+    'func-names': 0,
+    'no-unused-vars': 0,
+    'no-console': 0,
+    'import/prefer-default-export': 0
   },
   // Unable to resolve path to module './reportWebVitals'.eslintimport/no-unresolved
   // 无法解析模块....
