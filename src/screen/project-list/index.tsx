@@ -6,6 +6,7 @@ import List from './list'
 import SearchPenel from './search-penel'
 
 import { formatObj } from '../../utils/format'
+import { useDebounce } from '../../utils/debounce'
 
 import { Params, User, IList } from './type'
 
@@ -19,6 +20,8 @@ export default function () {
     personId: ''
   })
 
+  const debouncedParam = useDebounce<Params>(param)
+
   // 项目人列表
   const [users, setUsers] = useState<User[]>([])
 
@@ -27,7 +30,7 @@ export default function () {
 
   // 获取项目列表
   useEffect(() => {
-    fetch(`${apiUrl}/projects?${qs.stringify(formatObj(param))}`).then(
+    fetch(`${apiUrl}/projects?${qs.stringify(formatObj(debouncedParam))}`).then(
       async (res) => {
         if (res.ok) {
           const data = await res.json()
@@ -35,7 +38,7 @@ export default function () {
         }
       }
     )
-  }, [param])
+  }, [debouncedParam])
 
   // 获取项目人列表
   useEffect(() => {
